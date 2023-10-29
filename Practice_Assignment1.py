@@ -131,17 +131,17 @@ print(dia,circum,area)
 # In all other cases, the driver is not insured. If the marital status, sex and age of the driver
 # are the inputs, write a program to determine whether the driver is to be insured or not
 
-# In[27]:
+# In[1]:
 
 
-s = bool(int(input('If married type 1, and if not, then type 0: ')))
-gen = bool(int(input('If you are male, then press 1, and if not, then type 0: ')))
+s = int(int(input('If married type 1, and if not, then type 0: ')))
+gen = int(int(input('If you are male, then press 1, and if not, then type 0: ')))
 age = int(input('Enter age: '))
 
 if s:
     print("You are insured")
 else:
-    if (gen and age > 30) or (not gen and age > 25):
+    if (gen==1 and age > 30) or (gen==0 and age > 25):
         print("You are insured")
     else:
         print("You are not insured")
