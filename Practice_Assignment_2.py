@@ -20,7 +20,7 @@ isln("ban","banana")
 # factors of the number. Hint: Find all the prime number that multiply together to make the
 # original number. e.g. prime factors of 15 are 5 and 3.
 
-# In[3]:
+# In[1]:
 
 
 def isprime(num):
@@ -36,7 +36,7 @@ def isprime(num):
         return False
 
 
-# In[5]:
+# In[2]:
 
 
 def primefactor(num):
@@ -48,7 +48,7 @@ def primefactor(num):
         
 
 
-# In[7]:
+# In[3]:
 
 
 primefactor(42)
@@ -79,13 +79,16 @@ armstrong(153)
 # Write your own Range function that take three parameters (start, stop and step) as an input
 # and return the list of integer numbers.
 
-# In[11]:
+# In[5]:
 
 
 def ran(st,so,s):
+    li=[]
     for i in range(st,so,s):
-        print(i)
-ran(0,10,1)
+        li.append(i)
+    return li
+x=ran(0,10,1)
+print(x)
 
 
 # Write a function binary2Decimal that take binary number as input and return decimal
@@ -229,18 +232,21 @@ print(mode)
 # Declare a list of 20 integers that has duplicate numbers, write a program to delete duplicate
 # numbers from list.
 
-# In[32]:
+# In[6]:
 
 
-li=[1,2,3,4,3,4,6,9,4,5,9]
-new_li=list(set(li))
-new_li
+random_list = [5, 12, 7, 3, 8, 15, 7, 10, 4, 6, 12, 19, 11, 5, 2, 16, 9, 3, 17, 8]
+x=[]
+for i in random_list:
+    if i not in x:
+        x.append(i)
+print(x)
 
 
 # Write a function that takes a tuple of 10 number as a parameter and return the minimum of all
 # the numbers.
 
-# In[33]:
+# In[8]:
 
 
 def mini(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
@@ -255,8 +261,11 @@ def mini(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
     x.append(x8)
     x.append(x9)
     x.append(x10)
-    x.sort()
-    print(x[0])
+    m=x[0]
+    for i in x:
+        if (m>i):
+            m=i
+    return m
 mini(5,7,8,9,1,2,3,4,6,110)
 
 
@@ -279,13 +288,15 @@ for i in range(0,len(li),2):
 # printed. Regardless of the outcome, your function should print “Done” before terminating.
 # Here is an example of a successful login:
 
-# In[37]:
+# In[9]:
 
 
 li=['Ahmad', 'Zainab', 'Hina', 'Ali']
 name=input('Enter your name:')
 if name in li:
     print('You are in')
+else:
+    print('Login Failed')
 print('Done')
 
 
@@ -293,34 +304,36 @@ print('Done')
 # to a function swap that exchange the first and last values of list. After swapping print the
 # resultant list.
 
-# In[39]:
+# In[11]:
+
+
+def swap(li):
+    n=len(li)
+    temp=li[0]
+    li[0]=li[n-1]
+    li[n-1]=temp
+    print(li)
+
+
+# In[12]:
 
 
 li=['Ahmad', 'Zainab', 'Hina', 'Ali']
 name=input('Enter your name:')
 li.append(name)
-n=len(li)
-temp=li[0]
-li[0]=li[n-1]
-li[n-1]=temp
-print(li)
+swap(li)
 
 
 # Write a for loop that iterates over a list of strings myList and prints the first three characters
 # of every word. e.g. If myList is the list ['January', 'February', 'March'] thenthe following
 # should be printed:
 
-# In[41]:
+# In[13]:
 
 
 li= ['January', 'February', 'March']
 for i in li:
-    for j in range(0,len(i),1):
-        if(j==3):
-            break
-        else:
-            print(i[j],end="")
-    print()
+    print(i[0:3])
 
 
 # Write a program that requests an integer n from the user and append the squares of all
@@ -340,23 +353,15 @@ print(x)
 # the following change: if the entered word (input string) ends in 'ion', then 'ion' is replaced
 # with 'e', otherwise it returns the same word.
 
-# In[45]:
+# In[16]:
 
 
 def ion2e(str1):
-    x=len(str1)
-    newstr=""
-    if(x>=3):
-        if(str1[x-1]=='n'and str1[x-2]=='o' and str1[x-3]=='i'):
-            for i in range(0,(x-3),1):
-                newstr=newstr+str1[i]
-            newstr=newstr+'e'
-            return newstr
-        else:
-            return str1
+    if str1.endswith('ion'):
+        return str1[:-3]+'e'
     else:
         return str1
-print(ion2e('marathon'))
+print(ion2e('Completion'))
 
 
 # In[ ]:
