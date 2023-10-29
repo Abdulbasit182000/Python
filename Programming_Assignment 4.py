@@ -5,13 +5,94 @@
 # reverse if total characters in English words are more than total words in a
 # sentence.
 
-# In[1]:
+# In[14]:
 
 
-import inflect
-num=150000
-x=inflect.engine()
-x.number_to_words(num)
+def numtoeng(str1, multiple):
+    numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+    tens = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']
+    leng = len(str1)
+    num = int(str1)
+    str2 = ""
+
+    if leng == 1:
+        str2 = str2 + numbers[num]
+    elif leng == 2:
+        if num < 20:
+            str2 = str2 + numbers[num]
+        else:
+            y = int(str1[0])
+            str2 = str2 + tens[y - 2]
+            y = int(str1[1])
+            if y == 0:
+                pass
+            else:
+                str2 = str2 + " " + numbers[y]
+    else:
+        y = int(str1[0])
+        str2 = str2 + numbers[y] + " Hundred"
+        num = str1[1:]
+        num = int(num)
+        if num < 20:
+            str2 = str2 + " and " + numbers[num]
+        else:
+            y = int(str1[1])
+            if y != 0:
+                str2 = str2 + " and " + tens[y - 2]
+                y = int(str1[2])
+                if y != 0:
+                    str2 = str2 + " " + numbers[y]
+
+    return str2 + " " + multiple
+
+
+# In[20]:
+
+
+x = '1234567'
+num = 0
+multi = 1
+count = 0
+Multiple = [' ',' Thousand', ' Million', ' Billion', ' Trillion']
+li = []
+mu = 0
+
+if len(x) <= 3:
+    str1 = ""
+    for i in range(0, len(x), 1):
+        str1 = str1 + x[i]
+    y = numtoeng(str1, " ")
+    li.append(y)
+else:
+    for i in range(len(x) - 1, -1, -1):
+        if i == 0:
+            num = (int(x[i]) * multi) + num
+            num = str(num)
+            y = numtoeng(num, Multiple[mu])
+            li.append(y)
+        else:
+            if count != 3:
+                num = (int(x[i]) * multi) + num
+                multi = multi * 10
+                count = count + 1
+            if count == 3:
+                num = str(num)
+                y = numtoeng(num, Multiple[mu])
+                li.append(y)
+                mu = mu + 1
+                count = 0
+                num = 0
+                multi = 1
+
+if count > 0:
+    num = str(num)
+    y = numtoeng(num, Multiple[mu])
+    li.append(y)
+
+str2=""
+for j in range(len(li)-1,-1,-1):
+    str2=str2+" "+li[j]
+print(str2)
 
 
 # Given an input n, count the total number of digit 1 appearing in all nonnegative integers less than or equal to n.
