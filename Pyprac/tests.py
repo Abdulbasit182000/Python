@@ -43,6 +43,7 @@ class TestPar(unittest.TestCase):
         x=self.parser.mean_value(df,['Age','Num'],False)
         self.assertEqual(x,(13.0,2.0))
 
+# Main of Test CASES
 if __name__ == '__main__':
     logger.info('in main')
     unittest.main()
