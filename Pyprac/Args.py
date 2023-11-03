@@ -180,6 +180,13 @@ class Par:
                 mean_value = df3.loc["mean", i]
                 mean_values.append(mean_value)
             return tuple(mean_values)
+    
+    def print_table(self,df,prin,export):
+        if export:
+            df1=df[prin]
+            df1.to_csv(export,index=False)
+        else:
+            print(df[prin])
 
 
 def Argfunc():
@@ -209,6 +216,10 @@ def Argfunc():
             parser.mean_value(df, prin, export)
         else:
             raise Exception("please give --prin collums")
+    if args.pr:
+        if((not args.min) and (not args.max) and (not args.mean)):
+            parser.print_table(df,prin,export)
+
 
 # Main Function
 if __name__ == "__main__":
